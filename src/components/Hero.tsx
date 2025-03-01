@@ -37,7 +37,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero-section pt-24 pb-16 md:py-32 px-6">
+    <section className="hero-section h-screen flex items-center pt-16 pb-16 px-6">
       <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center">
         {/* Left Column - Text & Form */}
         <motion.div 
@@ -126,9 +126,9 @@ const Hero = () => {
           <div className="relative">
             <div className="relative z-10">
               <img 
-                src="/lovable-uploads/c4d52c2d-d283-4b83-a449-6ce69b2716c9.png" 
-                alt="Spopeer platform screenshot" 
-                className="rounded-lg shadow-2xl max-w-full object-cover"
+                src="/lovable-uploads/794e9ab1-0b6d-4175-9187-cfbabd425cc1.png" 
+                alt="Basketball team huddle" 
+                className="rounded-lg shadow-2xl max-w-full h-auto object-cover"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 w-full h-full bg-spopeer-blue opacity-10 rounded-lg"></div>
