@@ -65,7 +65,7 @@ const Hero = () => {
             className="text-gray-700 text-lg mb-8"
           >
             A unified platform where athletes, coaches, and clubs collaborate to 
-            elevate sports performance and build meaningful connections—anytime, anywhere.
+            elevate sports performance and build meaningful connections anytime, anywhere.
           </motion.p>
           
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
