@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Facebook, Twitter, Instagram, Linkedin, Send } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Send, MapPin, Mail, Phone } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,26 +20,46 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
-    // Here you would send the form data to your backend
     alert("Your message has been sent!");
     setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-gray-900 text-white">
-      <div className="container mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center">Get in Touch</h2>
+    <section id="contact" className="py-24 px-6 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500"></div>
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full filter blur-3xl"></div>
+      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full filter blur-3xl"></div>
+      
+      <div className="container mx-auto relative z-10">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <span className="inline-block px-4 py-1 bg-blue-500 bg-opacity-20 text-blue-300 rounded-full text-sm font-medium mb-4">
+            Get in Touch
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Let's Build Together</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+            Have questions or ideas? We'd love to hear from you. Reach out to our team 
+            and let's shape the future of sports together.
+          </p>
+        </motion.div>
         
-        <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="bg-white/10 p-8 rounded-2xl backdrop-blur-sm"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block mb-2 text-sm font-medium">Name</label>
+                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-200">Name</label>
                 <Input
                   id="name"
                   name="name"
@@ -48,12 +67,12 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Your name"
                   required
-                  className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 w-full"
+                  className="bg-white/5 border-gray-700 text-white placeholder:text-gray-400"
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium">Email</label>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-200">Email</label>
                 <Input
                   id="email"
                   name="email"
@@ -62,12 +81,12 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="your@email.com"
                   required
-                  className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 w-full"
+                  className="bg-white/5 border-gray-700 text-white placeholder:text-gray-400"
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block mb-2 text-sm font-medium">Message</label>
+                <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-200">Message</label>
                 <Textarea
                   id="message"
                   name="message"
@@ -75,13 +94,13 @@ const Contact = () => {
                   onChange={handleChange}
                   placeholder="Your message..."
                   required
-                  className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400 w-full"
+                  className="bg-white/5 border-gray-700 text-white placeholder:text-gray-400"
                   rows={5}
                 />
               </div>
               
-              <Button type="submit" className="bg-spopeer-blue hover:bg-opacity-90 w-full">
-                Submit
+              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+                Send Message
                 <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
@@ -92,34 +111,57 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-between"
           >
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4">Address</h3>
-              <p className="text-gray-300">info@spopeer.org</p>
+            <div className="space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-blue-500/20 rounded-lg">
+                  <Mail className="w-6 h-6 text-blue-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Email Us</h3>
+                  <p className="text-gray-300">info@spopeer.org</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-purple-500/20 rounded-lg">
+                  <MapPin className="w-6 h-6 text-purple-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Visit Us</h3>
+                  <p className="text-gray-300">Global Headquarters</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-orange-500/20 rounded-lg">
+                  <Phone className="w-6 h-6 text-orange-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Call Us</h3>
+                  <p className="text-gray-300">+1 (555) 123-4567</p>
+                </div>
+              </div>
             </div>
             
-            <div className="mb-8">
-              <p className="text-lg mb-4">
-                "We'd love to hear your thoughts, ideas, or any feedback to help us improve our platform!"
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+            <div className="mt-12">
+              <h3 className="text-xl font-semibold text-white mb-6">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-300 hover:text-spopeer-blue transition-colors">
-                  <Facebook className="h-6 w-6" />
-                </a>
-                <a href="#" className="text-gray-300 hover:text-spopeer-blue transition-colors">
-                  <Twitter className="h-6 w-6" />
-                </a>
-                <a href="#" className="text-gray-300 hover:text-spopeer-blue transition-colors">
-                  <Instagram className="h-6 w-6" />
-                </a>
-                <a href="#" className="text-gray-300 hover:text-spopeer-blue transition-colors">
-                  <Linkedin className="h-6 w-6" />
-                </a>
+                {[
+                  { icon: Facebook, href: "#" },
+                  { icon: Twitter, href: "#" },
+                  { icon: Instagram, href: "#" },
+                  { icon: Linkedin, href: "#" }
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                  >
+                    <social.icon className="h-6 w-6 text-gray-300" />
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
