@@ -126,6 +126,32 @@
   }
 }
 
+@layer base {
+  html {
+    @apply text-base;
+  }
+  
+  body {
+    @apply antialiased;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+
+  .section-padding {
+    @apply py-12 sm:py-16 md:py-20;
+  }
+
+  .container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+}
+
 @layer components {
   .hero-section {
     @apply relative overflow-hidden;

@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
@@ -26,21 +25,27 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero-section h-screen flex items-center pt-16 pb-16 px-6">
-      <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center">
-        {/* Left Column - Text & CTA Button */}
+    <section className="hero-section min-h-[100svh] flex items-center pt-16 px-4 sm:px-6">
+      <div className="container mx-auto grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
         <motion.div 
-          className="max-w-xl"
+          className="max-w-xl mx-auto md:mx-0 text-center md:text-left"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
         >
           <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              <span className="text-spopeer-blue">Spopeer</span>: "From local fields to global networks sports reimagined!"
+            <h1 className="font-bold mb-4 text-5xl">
+              <span className="text-spopeer-blue text-5xl">Bringing </span>
+              <span className="text-gray-900">Athletes, Coaches & Clubs</span>
+              <div className="flex justify-center md:justify-start">
+                <span className="text-[#0070FF] text-5xl font-bold">TOGETHER - </span>
+              </div>
+              <div className="mt-2">
+                <span className="text-red-500">Anytime, Anywhere!</span>
+              </div>
             </h1>
-            <p className="text-xl md:text-2xl font-semibold text-spopeer-darkgray mt-4 mb-3">
-              "Your game, your network, your future!
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold text-spopeer-darkgray mt-4 mb-3">
+              "Your game, your network, your future!"
             </p>
             <p className="text-base md:text-lg text-gray-700 mb-6">
               The ultimate sports networking platform designed to unite athletes, coaches, clubs, and sports professionals worldwide.
@@ -49,19 +54,18 @@ const Hero = () => {
           
           <Button 
             onClick={openWaitlist} 
-            className="cta-button text-lg px-8 py-6 mb-6"
+            className="cta-button text-lg sm:text-xl px-8 py-5 mb-6 w-auto shadow-lg hover:shadow-xl transition-all"
           >
             Join our waiting list
             <ChevronRight className="ml-2 h-5 w-5" />
           </Button>
           
           <p className="text-xs md:text-sm text-gray-600 mt-3">
-            *Supportive Profession includes all sports enthusiasts who are not athletes, coaches, or clubs (e.g. physios, scouts, journalists, photographers, and more) who want to contribute to the sports community in a meaningful capacity.
+            *Supportive Profession includes all sports enthusiasts who are not athletes, coaches, or clubs.
           </p>
         </motion.div>
         
-        {/* Right Column - App Screenshot */}
-        <motion.div 
+        <motion.div
           className="hidden md:block"
           initial="hidden"
           animate="visible"
@@ -84,3 +88,6 @@ const Hero = () => {
 };
 
 export default Hero;
+
+
+         
