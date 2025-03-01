@@ -46,21 +46,21 @@ const Hero = () => {
           animate="visible"
           variants={fadeIn}
         >
-          <div className="mb-8">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               <span className="text-spopeer-blue">Spopeer</span>: "From local fields to global networks sports reimagined!"
             </h1>
-            <p className="text-2xl font-semibold text-spopeer-darkgray mt-6 mb-4">
+            <p className="text-xl md:text-2xl font-semibold text-spopeer-darkgray mt-4 mb-3">
               "Your game, your network, your future!
             </p>
-            <p className="text-lg text-gray-700 mb-8">
-              The ultimate sports networking platform designed to unite athletes, coaches, clubs, and sports professionals worldwide. Whether you're looking to advance your career, find new opportunities, or build strong connections in the sports industry, Spopeer provides the tools to make it happen.
+            <p className="text-base md:text-lg text-gray-700 mb-6">
+              The ultimate sports networking platform designed to unite athletes, coaches, clubs, and sports professionals worldwide.
             </p>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-4">I am</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="bg-white p-5 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-3">I am</h3>
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div>
                 <label className="block text-sm font-medium mb-1">Choose your role</label>
                 <Select onValueChange={setRole}>
@@ -111,7 +111,7 @@ const Hero = () => {
             </form>
           </div>
           
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-xs md:text-sm text-gray-600 mt-3">
             *Supportive Profession includes all sports enthusiasts who are not athletes, coaches, or clubs (e.g. physios, scouts, journalists, photographers, and more) who want to contribute to the sports community in a meaningful capacity.
           </p>
         </motion.div>
