@@ -1,22 +1,11 @@
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
 import { ChevronRight } from "lucide-react";
+import { useWaitlist } from "@/contexts/WaitlistContext";
 
 const Hero = () => {
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
-  const [sport, setSport] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ email, role, sport });
-    // Here you would typically send this data to your backend
-    alert("Thanks for joining our waiting list!");
-  };
+  const { openWaitlist } = useWaitlist();
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -39,14 +28,14 @@ const Hero = () => {
   return (
     <section className="hero-section h-screen flex items-center pt-16 pb-16 px-6">
       <div className="container mx-auto grid md:grid-cols-2 gap-10 items-center">
-        {/* Left Column - Text & Form */}
+        {/* Left Column - Text & CTA Button */}
         <motion.div 
           className="max-w-xl"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
         >
-          <div className="mb-6">
+          <div className="mb-8">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               <span className="text-spopeer-blue">Spopeer</span>: "From local fields to global networks sports reimagined!"
             </h1>
@@ -58,58 +47,13 @@ const Hero = () => {
             </p>
           </div>
           
-          <div className="bg-white p-5 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-3">I am</h3>
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <label className="block text-sm font-medium mb-1">Choose your role</label>
-                <Select onValueChange={setRole}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="athlete">Athlete</SelectItem>
-                    <SelectItem value="coach">Coach</SelectItem>
-                    <SelectItem value="club">Club</SelectItem>
-                    <SelectItem value="professional">Professional</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-1">Your sport</label>
-                <Select onValueChange={setSport}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select sport" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="football">Football</SelectItem>
-                    <SelectItem value="basketball">Basketball</SelectItem>
-                    <SelectItem value="tennis">Tennis</SelectItem>
-                    <SelectItem value="running">Running</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-1">Enter your email</label>
-                <Input 
-                  type="email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@example.com"
-                  required
-                  className="w-full"
-                />
-              </div>
-              
-              <Button type="submit" className="cta-button w-full">
-                Join our waiting list
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
-          </div>
+          <Button 
+            onClick={openWaitlist} 
+            className="cta-button text-lg px-8 py-6 mb-6"
+          >
+            Join our waiting list
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </Button>
           
           <p className="text-xs md:text-sm text-gray-600 mt-3">
             *Supportive Profession includes all sports enthusiasts who are not athletes, coaches, or clubs (e.g. physios, scouts, journalists, photographers, and more) who want to contribute to the sports community in a meaningful capacity.

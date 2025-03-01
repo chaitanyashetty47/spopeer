@@ -1,7 +1,10 @@
 
 import { ChevronRight } from "lucide-react";
+import { useWaitlist } from "@/contexts/WaitlistContext";
 
 const Footer = () => {
+  const { openWaitlist } = useWaitlist();
+
   return (
     <footer className="bg-gray-800 text-white py-8 px-6">
       <div className="container mx-auto">
@@ -34,10 +37,13 @@ const Footer = () => {
           </ul>
           
           <div className="flex items-center space-x-4">
-            <a href="#waitlist" className="text-sm font-medium bg-spopeer-blue px-4 py-2 rounded-full flex items-center hover:bg-opacity-90 transition-colors">
+            <button 
+              onClick={openWaitlist}
+              className="text-sm font-medium bg-spopeer-blue px-4 py-2 rounded-full flex items-center hover:bg-opacity-90 transition-colors"
+            >
               Join Waitlist
               <ChevronRight className="ml-1 h-4 w-4" />
-            </a>
+            </button>
           </div>
         </div>
         

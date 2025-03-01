@@ -9,6 +9,8 @@ import KeyFeatures from "@/components/KeyFeatures";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import WaitlistDialog from "@/components/WaitlistDialog";
+import { useWaitlist } from "@/contexts/WaitlistContext";
 
 const Index = () => {
   const { scrollYProgress } = useScroll();
@@ -17,6 +19,7 @@ const Index = () => {
     damping: 30,
     restDelta: 0.001
   });
+  const { isOpen, openWaitlist, closeWaitlist } = useWaitlist();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -38,6 +41,12 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
+      
+      {/* Global Waitlist Dialog */}
+      <WaitlistDialog 
+        open={isOpen} 
+        onOpenChange={(open) => open ? openWaitlist() : closeWaitlist()} 
+      />
     </div>
   );
 };
