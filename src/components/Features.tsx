@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+
 
 const features = [
   {
@@ -87,7 +87,7 @@ const Features = () => {
   };
   
   return (
-    <section id="features" className="py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50">
+    <section id="about" className="py-24 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto">
         <motion.div 
           className="text-center mb-16 max-w-3xl mx-auto"

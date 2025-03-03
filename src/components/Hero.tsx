@@ -55,9 +55,11 @@ const Hero = () => {
           
           <motion.h1 
             variants={fadeUp} 
-            className="font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"
+            className="font-bold text-4xl md:text-5xl lg:text-[3.57rem] tracking-tight mb-6"
           >
-            <span className="text-blue-600">Connect</span> with the global sports community
+            {/* <span className="text-blue-600">Connect</span> with the global sports community */}
+            From Local Fields To Global Networks 
+            <br/> <span className="text-blue-600 text-lg md:text-2xl lg:text-3xl">Your Game, Your Network, Your Future</span>
           </motion.h1>
           
           <motion.p 

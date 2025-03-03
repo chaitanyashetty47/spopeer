@@ -70,7 +70,7 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
                   <SelectItem value="athlete">Athlete</SelectItem>
                   <SelectItem value="coach">Coach</SelectItem>
                   <SelectItem value="club">Club</SelectItem>
-                  <SelectItem value="professional">Professional</SelectItem>
+                  <SelectItem value="professional">Supportive Professional</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -109,8 +109,8 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
             </Button>
           </form>
           
-          <p className="text-xs text-gray-500 mt-3">
-            *Supportive Profession includes all sports enthusiasts who are not athletes, coaches, or clubs (e.g. physios, scouts, journalists, photographers, and more) who want to contribute to the sports community in a meaningful capacity.
+          <p className="text-xs text-gray-800 mt-3 font-normal">
+            *<span className="font-bold">Supportive Profession</span> includes all sports enthusiasts who are not athletes, coaches, or clubs (e.g. physios, scouts, journalists, photographers, and more) who want to contribute to the sports community in a meaningful capacity.
           </p>
         </div>
       </DialogContent>
