@@ -77,7 +77,7 @@ const Hero = () => {
               className="text-base px-8 py-6 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-blue-200 transition-all rounded-xl"
             >
               Join the Waiting List
-              <ChevronRight className="ml-2 h-5 w-5" />
+              <ChevronRight className="ml-2 h-5 w-5"/>
             </Button>
             
             
