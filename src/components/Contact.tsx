@@ -3,25 +3,59 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
 import { Facebook, Twitter, Instagram, Linkedin, Send, MapPin, Mail, Phone } from "lucide-react";
+import { getApiUrl } from "@/utils/api";
 
 const Contact = () => {
+
+  const {toast} = useToast();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: ""
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
-    console.log(formData);
-    alert("Your message has been sent!");
-    setFormData({ name: "", email: "", message: "" });
+  
+    try {
+      const response = await fetch(`${getApiUrl()}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setLoading(false);
+      toast({
+        title: "Success!",
+        description: "Thanks for sending the message!",
+      });
+          
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setLoading(false);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -99,9 +133,9 @@ const Contact = () => {
                 />
               </div>
               
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
-                Send Message
-                <Send className="ml-2 h-4 w-4" />
+              <Button type="submit" disabled={loading} className="w-full bg-blue-600 hover:bg-blue-700">
+              {loading ? "Submitting..." : "Send Message"}
+              {!loading && <Send className="ml-2 h-4 w-4" />}
               </Button>
             </form>
           </motion.div>

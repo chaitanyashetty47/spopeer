@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { 
   Dialog, 
@@ -13,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { getApiUrl } from "@/utils/api";
 
 interface WaitlistDialogProps {
   trigger?: React.ReactNode;
@@ -24,25 +24,49 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [sport, setSport] = useState("");
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
     e.preventDefault();
-    console.log({ email, role, sport });
-    // Here you would typically send this data to your backend
-    toast({
-      title: "Success!",
-      description: "Thanks for joining our waiting list!",
-    });
     
-    // Reset form fields
-    setEmail("");
-    setRole("");
-    setSport("");
-    
-    // Close dialog if controlled
-    if (onOpenChange) {
-      onOpenChange(false);
+    try {
+      const response = await fetch(`${getApiUrl()}/waitlist`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, role, sport }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to join waitlist');
+      }
+
+      toast({
+        title: "Success!",
+        description: "Thanks for joining our waiting list!",
+      });
+      
+      // Reset form fields
+      setEmail("");
+      setRole("");
+      setSport("");
+      setLoading(false);
+      
+      // Close dialog if controlled
+      if (onOpenChange) {
+        onOpenChange(false);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setLoading(false);
+      toast({
+        title: "Error",
+        description: "Failed to join waitlist. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -77,7 +101,7 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
             
             <div>
               <label className="block text-sm font-medium mb-1">Your sport</label>
-              <Select value={sport} onValueChange={setSport}>
+              {/* <Select value={sport} onValueChange={setSport}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select sport" />
                 </SelectTrigger>
@@ -88,7 +112,16 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
                   <SelectItem value="running">Running</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
-              </Select>
+              </Select> */}
+
+              <Input 
+                type="text" 
+                value={sport}
+                onChange={(e) => setSport(e.target.value)}
+                placeholder="Basketball, Football, Tennis, etc."
+                required
+                className="w-full"
+              />
             </div>
             
             <div>
@@ -103,9 +136,9 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
               />
             </div>
             
-            <Button type="submit" className="cta-button w-full">
-              Join our waiting list
-              <ChevronRight className="ml-2 h-4 w-4" />
+            <Button type="submit" className="cta-button w-full" disabled={loading}>
+              {loading ? "Submitting..." : "Join our waiting list"}
+              {!loading && <ChevronRight className="ml-2 h-4 w-4" />}
             </Button>
           </form>
           

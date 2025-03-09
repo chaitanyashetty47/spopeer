@@ -73,11 +73,13 @@ const Hero = () => {
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
             <Button
               onClick={openWaitlist}
+              data-youform-open="jvxfwdwr" data-youform-position="center"
               className="text-base px-8 py-6 bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-blue-200 transition-all rounded-xl"
             >
               Join the Waiting List
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
+            
             
             <Button
             variant="outline"
