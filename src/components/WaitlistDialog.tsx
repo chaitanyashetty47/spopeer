@@ -32,7 +32,7 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
     e.preventDefault();
     
     try {
-      const response = await fetch(`${getApiUrl()}/waitlist`, {
+      const response = await fetch(`${getApiUrl()}/api/waitlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

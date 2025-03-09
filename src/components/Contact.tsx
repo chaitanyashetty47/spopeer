@@ -29,7 +29,7 @@ const Contact = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch(`${getApiUrl()}/contact`, {
+      const response = await fetch(`${getApiUrl()}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
