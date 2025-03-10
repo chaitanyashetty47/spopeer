@@ -91,10 +91,10 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
                   <SelectValue placeholder="Select role" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="athlete">Athlete</SelectItem>
-                  <SelectItem value="coach">Coach</SelectItem>
-                  <SelectItem value="club">Club</SelectItem>
-                  <SelectItem value="professional">Supportive Professional</SelectItem>
+                  <SelectItem value="Athlete">Athlete</SelectItem>
+                  <SelectItem value="Coach">Coach</SelectItem>
+                  <SelectItem value="Club">Club</SelectItem>
+                  <SelectItem value="Supportive Professional">Supportive Professional</SelectItem>
                 </SelectContent>
               </Select>
             </div>
