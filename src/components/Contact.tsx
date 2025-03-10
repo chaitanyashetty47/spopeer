@@ -158,12 +158,12 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="flex items-start gap-4">
+              {/* <div className="flex items-start gap-4">
                 <div className="p-3 bg-purple-500/20 rounded-lg">
                   <MapPin className="w-6 h-6 text-purple-400" />
                 </div>
                
-              </div>
+              </div> */}
               
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-orange-500/20 rounded-lg">
