@@ -53,7 +53,7 @@ const Hero = () => {
   // Function to start count animation
   const startCountAnimation = (targetCount: number) => {
     // Start with a random higher number and count down to actual
-    const startingCount = Math.floor(targetCount * 0.75);
+    const startingCount = Math.floor(targetCount * 0.25);
     setDisplayCount(startingCount);
     
     const duration = 1500; // 1.5 seconds
