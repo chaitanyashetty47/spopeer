@@ -2,9 +2,68 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { useWaitlist } from "@/contexts/WaitlistContext";
+import { useState, useEffect } from "react";
+import { getApiUrl } from "@/utils/api";
 
 const Hero = () => {
   const { openWaitlist } = useWaitlist();
+  const [waitlistCount, setWaitlistCount] = useState(2500);
+  const [displayCount, setDisplayCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Fetch waitlist count
+  useEffect(() => {
+    const fetchWaitlistCount = async () => {
+      try {
+        const response = await fetch(`${getApiUrl()}/api/waitlist/count`);
+        if (response.ok) {
+          const data = await response.json();
+          setWaitlistCount(data.count + 2500 || 2500); // Fallback to 2500 if count is 0 or null
+        }
+      } catch (error) {
+        console.error("Error fetching waitlist count:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchWaitlistCount();
+  }, []);
+
+  // Animate count
+  useEffect(() => {
+    if (isLoading) return;
+    
+    let start = 0;
+    const end = waitlistCount;
+    const duration = 1500; // 1.5 seconds
+    const frameDuration = 1000 / 60; // 60fps
+    const totalFrames = Math.round(duration / frameDuration);
+    const increment = end / totalFrames;
+    
+    // Start with a random higher number and count down to actual
+    const startingCount = Math.floor(end * 1.5);
+    setDisplayCount(startingCount);
+    
+    let currentFrame = 0;
+    const counter = setInterval(() => {
+      currentFrame++;
+      const progress = easeOutQuad(currentFrame / totalFrames);
+      const currentCount = Math.floor(startingCount - (startingCount - end) * progress);
+      
+      setDisplayCount(currentCount);
+      
+      if (currentFrame === totalFrames) {
+        clearInterval(counter);
+        setDisplayCount(end);
+      }
+    }, frameDuration);
+    
+    return () => clearInterval(counter);
+  }, [waitlistCount, isLoading]);
+  
+  // Easing function for smoother animation
+  const easeOutQuad = (t: number) => t * (2 - t);
   
   const staggerContainer = {
     hidden: { opacity: 0 },
@@ -94,7 +153,7 @@ const Hero = () => {
             variants={fadeUp}
             className="text-sm text-gray-500 mt-6"
           >
-            Join over 5,000+ sports professionals already on the waitlist
+            Join over <span className="font-semibold">{displayCount.toLocaleString()}+</span> sports professionals already on the waitlist
           </motion.p>
         </motion.div>
         
@@ -119,7 +178,7 @@ const Hero = () => {
             <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg z-20">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="text-sm font-medium">2,500+ Active Users</span>
+                <span className="text-sm font-medium">{displayCount.toLocaleString()}+ Active Users</span>
               </div>
             </div>
             

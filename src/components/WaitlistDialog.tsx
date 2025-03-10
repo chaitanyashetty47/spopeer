@@ -77,7 +77,7 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
         <DialogHeader>
           <DialogTitle className="text-2xl">Join our waitlist</DialogTitle>
           <DialogDescription>
-            Be the first to experience Spopeer when we launch
+            Be the first to experience Spopeer when we launch!
           </DialogDescription>
         </DialogHeader>
         
