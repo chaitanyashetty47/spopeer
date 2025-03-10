@@ -22,7 +22,7 @@ const Hero = () => {
         const response = await fetch(`${getApiUrl()}/api/waitlist/count`);
         if (response.ok) {
           const data = await response.json();
-          const actualCount = data.count + 2500 || 2500; // Fallback to 2500 if count is 0 or null
+          const actualCount = data.count + 4447 || 4447; // Fallback to 2500 if count is 0 or null
           setWaitlistCount(actualCount);
           
           // Restart animation with actual count when data arrives
@@ -53,7 +53,7 @@ const Hero = () => {
   // Function to start count animation
   const startCountAnimation = (targetCount: number) => {
     // Start with a random higher number and count down to actual
-    const startingCount = Math.floor(targetCount * 1.5);
+    const startingCount = Math.floor(targetCount * 0.75);
     setDisplayCount(startingCount);
     
     const duration = 1500; // 1.5 seconds
