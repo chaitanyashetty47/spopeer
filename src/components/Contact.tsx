@@ -154,7 +154,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-2">Email Us</h3>
-                  <p className="text-gray-300">info@spopeer.org</p>
+                  <p className="text-gray-300">erditgr@yahoo.gr</p>
                 </div>
               </div>
               
@@ -162,10 +162,7 @@ const Contact = () => {
                 <div className="p-3 bg-purple-500/20 rounded-lg">
                   <MapPin className="w-6 h-6 text-purple-400" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Visit Us</h3>
-                  <p className="text-gray-300">Global Headquarters</p>
-                </div>
+               
               </div>
               
               <div className="flex items-start gap-4">
@@ -174,7 +171,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-2">Call Us</h3>
-                  <p className="text-gray-300">+1 (555) 123-4567</p>
+                  <p className="text-gray-300">+30 6936471452</p>
                 </div>
               </div>
             </div>
