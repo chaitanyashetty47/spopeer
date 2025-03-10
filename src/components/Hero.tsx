@@ -2,23 +2,37 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { useWaitlist } from "@/contexts/WaitlistContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getApiUrl } from "@/utils/api";
 
 const Hero = () => {
   const { openWaitlist } = useWaitlist();
   const [waitlistCount, setWaitlistCount] = useState(2500);
-  const [displayCount, setDisplayCount] = useState(0);
+  const [displayCount, setDisplayCount] = useState(2500); // Start with default value
   const [isLoading, setIsLoading] = useState(true);
+  const animationRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Fetch waitlist count
+  // Start animation immediately with default value
   useEffect(() => {
+    startCountAnimation(2500);
+    
+    // Fetch actual count
     const fetchWaitlistCount = async () => {
       try {
         const response = await fetch(`${getApiUrl()}/api/waitlist/count`);
         if (response.ok) {
           const data = await response.json();
-          setWaitlistCount(data.count + 2500 || 2500); // Fallback to 2500 if count is 0 or null
+          const actualCount = data.count + 2500 || 2500; // Fallback to 2500 if count is 0 or null
+          setWaitlistCount(actualCount);
+          
+          // Restart animation with actual count when data arrives
+          if (actualCount !== 2500) {
+            // Clear previous animation if it exists
+            if (animationRef.current) {
+              clearInterval(animationRef.current);
+            }
+            startCountAnimation(actualCount);
+          }
         }
       } catch (error) {
         console.error("Error fetching waitlist count:", error);
@@ -28,39 +42,40 @@ const Hero = () => {
     };
 
     fetchWaitlistCount();
-  }, []);
-
-  // Animate count
-  useEffect(() => {
-    if (isLoading) return;
     
-    let start = 0;
-    const end = waitlistCount;
+    return () => {
+      if (animationRef.current) {
+        clearInterval(animationRef.current);
+      }
+    };
+  }, []);
+  
+  // Function to start count animation
+  const startCountAnimation = (targetCount: number) => {
+    // Start with a random higher number and count down to actual
+    const startingCount = Math.floor(targetCount * 1.5);
+    setDisplayCount(startingCount);
+    
     const duration = 1500; // 1.5 seconds
     const frameDuration = 1000 / 60; // 60fps
     const totalFrames = Math.round(duration / frameDuration);
-    const increment = end / totalFrames;
-    
-    // Start with a random higher number and count down to actual
-    const startingCount = Math.floor(end * 1.5);
-    setDisplayCount(startingCount);
     
     let currentFrame = 0;
-    const counter = setInterval(() => {
+    animationRef.current = setInterval(() => {
       currentFrame++;
       const progress = easeOutQuad(currentFrame / totalFrames);
-      const currentCount = Math.floor(startingCount - (startingCount - end) * progress);
+      const currentCount = Math.floor(startingCount - (startingCount - targetCount) * progress);
       
       setDisplayCount(currentCount);
       
       if (currentFrame === totalFrames) {
-        clearInterval(counter);
-        setDisplayCount(end);
+        if (animationRef.current) {
+          clearInterval(animationRef.current);
+        }
+        setDisplayCount(targetCount);
       }
     }, frameDuration);
-    
-    return () => clearInterval(counter);
-  }, [waitlistCount, isLoading]);
+  };
   
   // Easing function for smoother animation
   const easeOutQuad = (t: number) => t * (2 - t);
