@@ -7,7 +7,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Facebook, Twitter, Instagram, Linkedin, Send, MapPin, Mail  } from "lucide-react";
 import { getApiUrl } from "@/utils/api";
 
-// Custom social media icon
+// Custom social media icons
 const WhatsAppIcon = () => (
 
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
