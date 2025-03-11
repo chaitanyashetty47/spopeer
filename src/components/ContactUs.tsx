@@ -27,7 +27,7 @@ const TelegramIcon = () => (
   </svg>
 );
 
-const Contact = () => {
+const ContactUs = () => {
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -254,4 +254,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactUs;

@@ -7,7 +7,7 @@ import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import KeyFeatures from "@/components/KeyFeatures";
 import CTA from "@/components/CTA";
-import Contact from "@/components/Contact";
+import ContactUs from "@/components/ContactUs";
 import Footer from "@/components/Footer";
 import WaitlistDialog from "@/components/WaitlistDialog";
 import { useWaitlist } from "@/contexts/WaitlistContext";
@@ -38,7 +38,7 @@ const Index = () => {
         <HowItWorks />
         <KeyFeatures />
         <CTA />
-        <Contact />
+        <ContactUs />
       </main>
       <Footer />
       
