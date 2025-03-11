@@ -42,7 +42,7 @@ const Index = () => {
       </main>
       <Footer />
       
-      {/* Global Waitlist Dialog */}
+      {/* Global Waitlist Dialog*/}
       <WaitlistDialog 
         open={isOpen} 
         onOpenChange={(open) => open ? openWaitlist() : closeWaitlist()} 
