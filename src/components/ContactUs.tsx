@@ -182,40 +182,67 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-1">Email Us</h3>
-                  <p className="text-gray-300">erditgr@yahoo.gr</p>
+                  <div className="flex flex-col space-y-1">
+                    <a href="mailto:erditgr@yahoo.gr" className="text-gray-300 hover:text-blue-400 transition-colors">
+                      erditgr@yahoo.gr
+                    </a>
+                    <div className="flex flex-wrap gap-2 mt-1 text-sm">
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=erditgr@yahoo.gr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors underline">
+                        Gmail
+                      </a>
+                      <a href="https://compose.mail.yahoo.com/?to=erditgr@yahoo.gr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors underline">
+                        Yahoo
+                      </a>
+                      <a href="https://outlook.office.com/mail/deeplink/compose?to=erditgr@yahoo.gr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors underline">
+                        Outlook
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-green-500/20 rounded-lg">
-                  <WhatsAppIcon />
-                  <span className="sr-only">WhatsApp</span>
+                  <a href="https://wa.me/306936471452" target="_blank" rel="noopener noreferrer">
+                    <WhatsAppIcon />
+                    <span className="sr-only">WhatsApp</span>
+                  </a>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-1">WhatsApp</h3>
-                  <p className="text-gray-300">+30 6936471452</p>
+                  <a href="https://wa.me/306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-green-400 transition-colors">
+                    +30 6936471452
+                  </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-purple-500/20 rounded-lg">
-                  <ViberIcon />
-                  <span className="sr-only">Viber</span>
+                  {/* <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer"> */}
+                    <ViberIcon />
+                    <span className="sr-only">Viber</span>
+                  {/* </a> */}
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-1">Viber</h3>
-                  <p className="text-gray-300">+30 6936471452</p>
+                  {/* <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-purple-400 transition-colors"> */}
+                    +30 6936471452
+                  {/* </a> */}
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-blue-400/20 rounded-lg">
-                  <TelegramIcon />
-                  <span className="sr-only">Telegram</span>
+                  <a href="https://t.me/+306936471452" target="_blank" rel="noopener noreferrer">
+                    <TelegramIcon />
+                    <span className="sr-only">Telegram</span>
+                  </a>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-1">Telegram</h3>
-                  <p className="text-gray-300">+30 6936471452</p>
+                  <a href="https://t.me/+306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors">
+                    +30 6936471452
+                  </a>
                 </div>
               </div>
               
