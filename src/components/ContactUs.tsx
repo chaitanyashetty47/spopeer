@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { Facebook, Twitter, Instagram, Linkedin, Send, MapPin, Mail, ChevronDown  } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Send, MapPin, Mail  } from "lucide-react";
 import { getApiUrl } from "@/utils/api";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 // Custom social media icons
 const WhatsAppIcon = () => (
@@ -38,7 +37,6 @@ const ContactUs = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [emailPopoverOpen, setEmailPopoverOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -180,106 +178,17 @@ const ContactUs = () => {
             <div className="space-y-8">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-blue-500/20 rounded-lg">
-                  <Mail className="w-8 h-8 text-blue-400" />
+                  <a href="mailto:erditgr@yahoo.gr" className="text-gray-300 hover:text-blue-400 transition-colors">
+                    <Mail className="w-8 h-8 text-blue-400" />
+                  </a>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-1">Email Us</h3>
                   <div className="flex flex-col space-y-1">
-                    <div className="flex items-center gap-2">
-                      
-                      <Popover open={emailPopoverOpen} onOpenChange={setEmailPopoverOpen}>
-                        <PopoverTrigger asChild>
-                          <Button variant="ghost" size="sm" className="h-6 px-0 text-gray-400 hover:text-blue-400">
-                            <span className="sr-only">Open email options</span>
-                            <span className="text-gray-300 hover:text-blue-400 transition-colors">
-                              erditgr@yahoo.gr
-                            </span>
-                            <ChevronDown className="h-4 w-4" />
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-56 p-2 bg-gray-800 border-gray-700">
-                          <div className="grid gap-2">
-                            <a 
-                              href="https://mail.google.com/mail/?view=cm&fs=1&to=erditgr@yahoo.gr" 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-colors"
-                              onClick={() => setEmailPopoverOpen(false)}
-                            >
-                              <div className="w-6 h-6 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
-                                  <path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/>
-                                  <path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/>
-                                  <polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/>
-                                  <path fill="#c62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"/>
-                                  <path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"/>
-                                </svg>
-                              </div>
-                              <span className="text-gray-200">Gmail</span>
-                            </a>
-                            <a 
-                              href="https://compose.mail.yahoo.com/?to=erditgr@yahoo.gr" 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-colors"
-                              onClick={() => setEmailPopoverOpen(false)}
-                            >
-                              <div className="w-6 h-6 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
-                                  <path fill="#6a1b9a" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5	V37z"/>
-                                  <path fill="#e1f5fe" d="M15.021,33.499C15.009,32.063,15,23.846,15,19c0-1.043,0-1.924,0-2.293	C16.005,14.998,18.386,13,24,13c5.5,0,8.08,2.083,9,4.5V33.5L15.021,33.499z"/>
-                                  <path fill="#6a1b9a" d="M24,16c-3.727,0-6,1.778-6,4h12C30,17.778,27.727,16,24,16z"/>
-                                  <path fill="#6a1b9a" d="M33,21H15v1.5h18V21z"/>
-                                  <path fill="#6a1b9a" d="M33,24H15v1.5h18V24z"/>
-                                  <path fill="#6a1b9a" d="M33,27H15v1.5h18V27z"/>
-                                  <path fill="#6a1b9a" d="M25.5,30H15v1.5h10.5V30z"/>
-                                </svg>
-                              </div>
-                              <span className="text-gray-200">Yahoo</span>
-                            </a>
-                            <a 
-                              href="https://outlook.office.com/mail/deeplink/compose?to=erditgr@yahoo.gr" 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-colors"
-                              onClick={() => setEmailPopoverOpen(false)}
-                            >
-                              <div className="w-6 h-6 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
-                                  <path fill="#03A9F4" d="M21,31c0,1.104,0.896,2,2,2h17c1.104,0,2-0.896,2-2V16c0-1.104-0.896-2-2-2H23c-1.104,0-2,0.896-2,2V31z"/>
-                                  <path fill="#B3E5FC" d="M42,16.975V16c0-0.428-0.137-0.823-0.367-1.148l-11.264,6.932l-11.265-6.932C18.834,15.177,18.696,15.572,18.696,16v0.975L24,20.4L42,16.975z"/>
-                                  <path fill="#0277BD" d="M41.633,14.852c-0.323-0.455-0.855-0.75-1.455-0.75H23.822c-0.6,0-1.132,0.295-1.455,0.75l11.633,7.16L41.633,14.852z"/>
-                                  <path fill="#1976D2" d="M6,14.8C6,9.478,8.019,4,13.6,4C19.159,4,22,9.275,22,13.696S19.447,23,12.6,23C7.777,23,6,20.071,6,14.8z"/>
-                                  <path fill="#1976D2" d="M15,12.181C12.455,12.181,10,15.359,10,19.483C10,23.235,11.634,27,15.901,27c4.247,0,5.096-4.661,5.096-7.303C21,14.955,17.564,12.181,15,12.181z"/>
-                                  <path fill="#1976D2" d="M27.435,43.907c0,0.016-0.012,0.028-0.028,0.028l-12.871,0.023c-0.016,0-0.028-0.012-0.028-0.028v-9.938c0-0.016,0.012-0.028,0.028-0.028h12.899c0.016,0,0.028,0.012,0.028,0.028v9.915H27.435z"/>
-                                  <path fill="#1976D2" d="M40.899,43.935H32c-0.553,0-1-0.447-1-1V32c0-0.553,0.447-1,1-1h7.899c1.188,0,2.101,0.897,2.101,2.063v9.872C42,43.038,41.086,43.935,40.899,43.935z"/>
-                                  <path fill="#1976D2" d="M17,31.111V31c0-0.552,0.448-1,1-1h8c0.552,0,1,0.448,1,1v0.111C27,31.602,26.552,32,26,32h-8C17.448,32,17,31.602,17,31.111z"/>
-                                  <path fill="#1976D2" d="M25,35c0,0.552-0.448,1-1,1h-7c-0.552,0-1-0.448-1-1l0,0c0-0.552,0.448-1,1-1h7C24.552,34,25,34.448,25,35L25,35z"/>
-                                  <path fill="#1976D2" d="M25,39c0,0.552-0.448,1-1,1h-7c-0.552,0-1-0.448-1-1l0,0c0-0.552,0.448-1,1-1h7C24.552,38,25,38.448,25,39L25,39z"/>
-                                  <circle fill="#BBDEFB" cx="34" cy="37" r="2"/>
-                                </svg>
-                              </div>
-                              <span className="text-gray-200">Outlook</span>
-                            </a>
-                            <a 
-                              href="mailto:erditgr@yahoo.gr" 
-                              className="flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-colors"
-                              onClick={() => setEmailPopoverOpen(false)}
-                            >
-                              <div className="w-6 h-6 flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
-                                  <path fill="#cfd8dc" d="M20,4H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6C22,4.9,21.1,4,20,4z"/>
-                                  <path fill="#78909c" d="M20,4H4l8,6L20,4z"/>
-                                  <path fill="#CFD8DC" d="M4,4h16v2H4V4z"/>
-                                  <path fill="#4caf50" d="M20,18H4V8l8,5l8-5V18z"/>
-                                </svg>
-                              </div>
-                              <span className="text-gray-200">Default Mail</span>
-                            </a>
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    </div>
+                    <a href="mailto:erditgr@yahoo.gr" className="text-gray-300 hover:text-blue-400 transition-colors">
+                      erditgr@yahoo.gr
+                    </a>
+                
                   </div>
                 </div>
               </div>
@@ -301,16 +210,16 @@ const ContactUs = () => {
 
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-purple-500/20 rounded-lg">
-                  <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer">
+                  {/* <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer"> */}
                     <ViberIcon />
                     <span className="sr-only">Viber</span>
-                  </a>
+                  {/* </a> */}
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-1">Viber</h3>
-                  <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-purple-400 transition-colors">
+                  {/* <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-purple-400 transition-colors"> */}
                     +30 6936471452
-                  </a>
+                  {/* </a> */}
                 </div>
               </div>
 
