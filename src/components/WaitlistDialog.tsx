@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Dialog, 
   DialogContent, 
@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ChevronRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { getApiUrl } from "@/utils/api";
+import { Combobox } from "@/components/ui/combobox";
 
 interface WaitlistDialogProps {
   trigger?: React.ReactNode;
@@ -25,7 +26,54 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
   const [role, setRole] = useState("");
   const [sport, setSport] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sportsOptions, setSportsOptions] = useState<{value: string; label: string}[]>([]);
+  const [isLoadingSports, setIsLoadingSports] = useState(true);
   const { toast } = useToast();
+
+  // Fetch available sports from the API
+  useEffect(() => {
+    const fetchSports = async () => {
+      try {
+        setIsLoadingSports(true);
+        const response = await fetch(`${getApiUrl()}/api/waitlist/sports`);
+        if (response.ok) {
+          const data = await response.json();
+          // Transform the data to the format expected by the Combobox
+          const formattedOptions = data.sports.map((sportName: string) => ({
+            value: sportName,
+            label: sportName.charAt(0).toUpperCase() + sportName.slice(1),
+          }));
+          
+          // Add some default options if the list is empty
+          if (formattedOptions.length === 0) {
+            setSportsOptions([
+              { value: "football", label: "Football" },
+              { value: "basketball", label: "Basketball" },
+              { value: "tennis", label: "Tennis" },
+              { value: "running", label: "Running" },
+              { value: "swimming", label: "Swimming" },
+            ]);
+          } else {
+            setSportsOptions(formattedOptions);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching sports:', error);
+        // Fallback options if fetch fails
+        setSportsOptions([
+          { value: "football", label: "Football" },
+          { value: "basketball", label: "Basketball" },
+          { value: "tennis", label: "Tennis" },
+          { value: "running", label: "Running" },
+          { value: "swimming", label: "Swimming" },
+        ]);
+      } finally {
+        setIsLoadingSports(false);
+      }
+    };
+
+    fetchSports();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true);
@@ -101,27 +149,28 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
             
             <div>
               <label className="block text-sm font-medium mb-1">Your sport</label>
-              {/* <Select value={sport} onValueChange={setSport}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select sport" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="football">Football</SelectItem>
-                  <SelectItem value="basketball">Basketball</SelectItem>
-                  <SelectItem value="tennis">Tennis</SelectItem>
-                  <SelectItem value="running">Running</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
-                </SelectContent>
-              </Select> */}
-
-              <Input 
-                type="text" 
-                value={sport}
-                onChange={(e) => setSport(e.target.value)}
-                placeholder="Basketball, Football, Tennis, etc."
-                required
-                className="w-full"
-              />
+              {isLoadingSports ? (
+                <Input 
+                  type="text" 
+                  value={sport}
+                  onChange={(e) => setSport(e.target.value)}
+                  placeholder="Loading sports options..."
+                  disabled
+                  className="w-full"
+                />
+              ) : (
+                <div className="relative">
+                  <Combobox
+                    options={sportsOptions}
+                    value={sport}
+                    onChange={setSport}
+                    placeholder="Select or search sport"
+                    emptyText="Sport not found. Use the button below to add it."
+                    className="w-full"
+                    allowCustomValue={true}
+                  />
+                </div>
+              )}
             </div>
             
             <div>
