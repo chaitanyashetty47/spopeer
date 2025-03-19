@@ -86,7 +86,7 @@ export function Combobox({
       <PopoverContent className="p-0 w-full min-w-[200px]">
         <Command>
           <CommandInput 
-            placeholder={`Search ${placeholder.toLowerCase()}`}
+            placeholder={`${placeholder}` }
             value={inputValue}
             onValueChange={handleCommandInputChange}
           />
