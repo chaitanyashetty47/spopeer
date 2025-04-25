@@ -31,7 +31,7 @@ const features = [
     iconColor: "text-green-600"
   },
   {
-    title: "Professionals",
+    title: "Supportive Profession",
     description: "Access global opportunities in the sports industry and expand your professional network.",
     image: "/lovable-uploads/suitcase.png",
     iconBg: "bg-yellow-100",

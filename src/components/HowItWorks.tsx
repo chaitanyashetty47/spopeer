@@ -98,8 +98,8 @@ const categories = [
     ]
   },
   {
-    title: "Supportive Professionals",
-    shortTitle: "Professionals",
+    title: "Supportive Profession",
+    shortTitle: "Supportive Profession",
     icon: "/lovable-uploads/suitcase.png",
     color: "bg-blue-100",
     textColor: "text-blue-600",

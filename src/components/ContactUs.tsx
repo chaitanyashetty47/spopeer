@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { Facebook, Twitter, Instagram, Linkedin, Send, MapPin, Mail  } from "lucide-react";
 import { getApiUrl } from "@/utils/api";
+import { Link } from "react-router-dom";
 
 // Custom social media icons
 const WhatsAppIcon = () => (
@@ -176,70 +177,50 @@ const ContactUs = () => {
             className="space-y-8"
           >
             <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-blue-500/20 rounded-lg">
-                  <a href="mailto:erditgr@yahoo.gr" className="text-gray-300 hover:text-blue-400 transition-colors">
-                    <Mail className="w-8 h-8 text-blue-400" />
-                  </a>
+              <a href="mailto:erditgr@yahoo.gr" className="flex items-center gap-4 group">
+                <div className="p-3 bg-blue-500/20 rounded-lg group-hover:bg-blue-500/30 transition-colors">
+                  <Mail className="w-8 h-8 text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-1">Email Us</h3>
-                  <div className="flex flex-col space-y-1">
-                    <a href="mailto:erditgr@yahoo.gr" className="text-gray-300 hover:text-blue-400 transition-colors">
-                      erditgr@yahoo.gr
-                    </a>
-                
-                  </div>
+                  <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">Email Us</h3>
                 </div>
-              </div>
+              </a>
               
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-green-500/20 rounded-lg">
-                  <a href="https://wa.me/306936471452" target="_blank" rel="noopener noreferrer">
-                    <WhatsAppIcon />
-                    <span className="sr-only">WhatsApp</span>
-                  </a>
+              <a href="https://wa.me/306936471452" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                <div className="p-3 bg-green-500/20 rounded-lg group-hover:bg-green-500/30 transition-colors">
+                  <WhatsAppIcon />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-1">WhatsApp</h3>
-                  <a href="https://wa.me/306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-green-400 transition-colors">
-                    +30 6936471452
-                  </a>
+                  <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">WhatsApp</h3>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-start gap-4">
+              {/* <div className="flex items-start gap-4">
                 <div className="p-3 bg-purple-500/20 rounded-lg">
-                  {/* <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer"> */}
+                  <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer">
                     <ViberIcon />
                     <span className="sr-only">Viber</span>
-                  {/* </a> */}
+                  </a>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-1">Viber</h3>
-                  {/* <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-purple-400 transition-colors"> */}
+                  <a href="viber://chat?number=%2B306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-purple-400 transition-colors">
                     +30 6936471452
-                  {/* </a> */}
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-blue-400/20 rounded-lg">
-                  <a href="https://t.me/+306936471452" target="_blank" rel="noopener noreferrer">
-                    <TelegramIcon />
-                    <span className="sr-only">Telegram</span>
                   </a>
+                </div>
+              </div> */}
+
+              <a href="https://t.me/+306936471452" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+                <div className="p-3 bg-blue-400/20 rounded-lg group-hover:bg-blue-400/30 transition-colors">
+                  <TelegramIcon />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-1">Telegram</h3>
-                  <a href="https://t.me/+306936471452" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-blue-400 transition-colors">
-                    +30 6936471452
-                  </a>
+                  <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">Telegram</h3>
                 </div>
-              </div>
+              </a>
               
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-orange-500/20 rounded-lg">
+                <div className="p-3 bg-red-500/20 rounded-lg">
                   <MapPin className="w-8 h-8 text-gray-400" />
                 </div>
                 <div>
@@ -252,18 +233,18 @@ const ContactUs = () => {
             <div>
               <h3 className="text-xl font-semibold text-white mb-4">Follow Us</h3>
               <div className="flex gap-4">
-                <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors">
+                <a href="https://www.facebook.com/spopeer/" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors">
                   <Facebook className="w-5 h-5 text-blue-400" />
                 </a>
-                <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors">
-                  <Twitter className="w-5 h-5 text-blue-400" />
+                <a href="https://x.com/Spopeer" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors">
+                  <Twitter className="w-5 h-5 text-cyan-500" />
                 </a>
-                <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors">
+                {/* <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors">
                   <Instagram className="w-5 h-5 text-pink-400" />
                 </a>
                 <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-gray-700 transition-colors">
                   <Linkedin className="w-5 h-5 text-blue-400" />
-                </a>
+                </a> */}
               </div>
             </div>
           </motion.div>

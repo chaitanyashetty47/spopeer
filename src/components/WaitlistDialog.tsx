@@ -142,7 +142,7 @@ const WaitlistDialog = ({ trigger, open, onOpenChange }: WaitlistDialogProps) =>
                   <SelectItem value="Athlete">Athlete</SelectItem>
                   <SelectItem value="Coach">Coach</SelectItem>
                   <SelectItem value="Club">Club</SelectItem>
-                  <SelectItem value="Supportive Professional">Supportive Professional</SelectItem>
+                  <SelectItem value="Supportive Professional">Supportive Profession</SelectItem>
                 </SelectContent>
               </Select>
             </div>

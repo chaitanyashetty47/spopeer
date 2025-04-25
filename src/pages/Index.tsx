@@ -9,6 +9,7 @@ import KeyFeatures from "@/components/KeyFeatures";
 import CTA from "@/components/CTA";
 import ContactUs from "@/components/ContactUs";
 import Footer from "@/components/Footer";
+import FAQ from "@/components/FAQ";
 import WaitlistDialog from "@/components/WaitlistDialog";
 import { useWaitlist } from "@/contexts/WaitlistContext";
 
@@ -39,6 +40,8 @@ const Index = () => {
         <KeyFeatures />
         <CTA />
         <ContactUs />
+        {/* Add FAQ section here */}
+        <FAQ />
       </main>
       <Footer />
       
