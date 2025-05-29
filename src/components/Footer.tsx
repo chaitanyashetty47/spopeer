@@ -1,6 +1,6 @@
-
 import { ChevronRight } from "lucide-react";
 import { useWaitlist } from "@/contexts/WaitlistContext";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { openWaitlist } = useWaitlist();
@@ -20,14 +20,14 @@ const Footer = () => {
           
           <ul className="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
             <li>
-              <a href="#" className="text-gray-300 hover:text-spopeer-blue transition-colors">
+              <Link to="/privacypolicy" className="text-gray-300 hover:text-spopeer-blue transition-colors">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="text-gray-300 hover:text-spopeer-blue transition-colors">
-                Terms of Service
-              </a>
+              <Link to="/termsofuse" className="text-gray-300 hover:text-spopeer-blue transition-colors">
+                Terms of Use
+              </Link>
             </li>
             <li>
               <a href="#contact" className="text-gray-300 hover:text-spopeer-blue transition-colors">
